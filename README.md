@@ -15,3 +15,22 @@ DB_NAME=sample_db
 ```bash
 $ docker-compose up --build
 ```
+
+
+3. 確認方法
+
+```bash
+# GET
+curl http://localhost:8080/users  
+
+# POST
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Tom Smith", "email": "tom.smith@example.com"}' http://localhost:8080/users
+
+# PUT
+curl -X PUT -H "Content-Type: application/json" -d '{"name": "Tom Smith Updated", "email": "tom.smith.updated@example.com"}' http://localhost:8080/users/1
+
+# DELETE
+curl -X DELETE http://localhost:8080/users/1
+
+
+```
