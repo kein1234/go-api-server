@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "24c861e0-9a89-421e-b8c3-158672660856",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12358051"
+	},
+	"item": [
+		{
+			"name": "認証エンドポイント",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const getToken = {",
+							"    url: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[APIキー]',",
+							"    method: \"post\",",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"            email: '[メールアドレス]',",
+							"            password: '[パスワード]',",
+							"            returnSecureToken: true",
+							"        })",
+							"    },",
+							"    header: {",
+							"        'Content-Type': 'application/json'",
+							"    }",
+							"};",
+							"",
+							"pm.sendRequest(getToken, function (err, response) {",
+							"    console.log(response.json());",
+							"    var jsonData = response.json();",
+							"    pm.request.headers.add({",
+							"        key: \"Authorization\",",
+							"        value: \"Bearer \" + jsonData.idToken",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth-users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth-users",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "FirebaseAuthToken",
+			"value": ""
+		}
+	]
+}
