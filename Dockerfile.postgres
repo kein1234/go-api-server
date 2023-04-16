@@ -1,0 +1,7 @@
+# Use the official PostgreSQL image as a base image
+FROM postgres:13-alpine
+
+# Set environment variables for the PostgreSQL database
+ENV POSTGRES_USER your_db_user
+ENV POSTGRES_PASSWORD your_db_password
+ENV POSTGRES_DB your_db_name
