@@ -21,16 +21,17 @@ $ docker-compose up --build
 
 ```bash
 # GET
-curl http://localhost:8080/users  
+curl -X GET "http://localhost:8080/api/v1/users/"
+curl -X GET "http://localhost:8080/api/v1/users/1"
 
 # POST
-curl -X POST -H "Content-Type: application/json" -d '{"name": "Tom Smith", "email": "tom.smith@example.com"}' http://localhost:8080/users
+curl -X POST "http://localhost:8080/api/v1/users/" -H "Content-Type: application/json" -d '{"name": "John Doe", "email": "john.doe@example.com"}'
 
 # PUT
-curl -X PUT -H "Content-Type: application/json" -d '{"name": "Tom Smith Updated", "email": "tom.smith.updated@example.com"}' http://localhost:8080/users/1
+curl -X PUT "http://localhost:8080/api/v1/users/1" -H "Content-Type: application/json" -d '{"name": "John Doe Updated", "email": "john.doe.updated@example.com"}'
 
 # DELETE
-curl -X DELETE http://localhost:8080/users/1
+curl -X DELETE "http://localhost:8080/api/v1/users/1"
 
 
 ```
